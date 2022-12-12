@@ -1,6 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
-import css from './RegisterForm.module.css';
+import {
+  Input,
+  Box,
+  FormLabel,
+  Button,
+  Stack,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
+import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
+import { RiLockPasswordFill } from 'react-icons/ri';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -19,20 +29,55 @@ export const RegisterForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
+    <Box as="form" mt={6} pl={4} onSubmit={handleSubmit}>
+      <FormLabel>
         Username
-        <input type="text" name="name" required />
-      </label>
-      <label className={css.label}>
+        <Stack spacing={4}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<AiOutlineUser color="gray.300" />}
+            />
+            <Input type="text" name="name" />
+          </InputGroup>
+        </Stack>
+      </FormLabel>
+      <FormLabel>
         Email
-        <input type="email" name="email" required />
-      </label>
-      <label className={css.label}>
+        <Stack spacing={4}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<AiOutlineMail color="gray.300" />}
+            />
+            <Input type="text" name="email" />
+          </InputGroup>
+        </Stack>
+      </FormLabel>
+      <FormLabel>
         Password
-        <input type="password" name="password" required />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+        <Stack spacing={4}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<RiLockPasswordFill color="gray.300" />}
+            />
+            <Input type="password" name="password" />
+          </InputGroup>
+        </Stack>
+      </FormLabel>
+      <Button
+        backgroundColor={'green.100'}
+        _hover={{ bg: 'green.200' }}
+        size="md"
+        height="48px"
+        width="200px"
+        border="2px"
+        borderColor="green.50"
+        type="submit"
+      >
+        Register
+      </Button>
+    </Box>
   );
 };

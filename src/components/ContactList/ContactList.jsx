@@ -1,8 +1,10 @@
-import css from '../ContactList/ContactList.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contact/operations';
 import { useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'redux/contact/selectors';
+import { List, ListItem, Flex, IconButton, Text } from '@chakra-ui/react';
+
+import { AiTwotoneDelete, AiFillPhone } from 'react-icons/ai';
 
 const ContactList = () => {
   const contacts = useSelector(getContacts);
@@ -26,16 +28,33 @@ const ContactList = () => {
   if (visibleContacts.length === 0) return null;
   return (
     <>
-      <ul className={css.list}>
+      <Flex as={List} flexDirection="column">
         {visibleContacts.map(({ id, name, number }) => (
-          <li className={css.item} key={id}>
-            {name}: {number}
-            <button className={css.btn} onClick={() => delContact(id)}>
-              delete
-            </button>
-          </li>
+          <Flex
+            as={ListItem}
+            justify="center"
+            alignItems="center"
+            key={id}
+            gap={'5'}
+          >
+            <Text as="b" fontSize="2xl">
+              {name}
+            </Text>
+            <AiFillPhone />
+            <Text as="samp" fontSize="xl">
+              {number}
+            </Text>
+            <IconButton
+              color="green.200"
+              variant="outline"
+              icon={<AiTwotoneDelete />}
+              onClick={() => {
+                delContact(id);
+              }}
+            ></IconButton>
+          </Flex>
         ))}
-      </ul>
+      </Flex>
     </>
   );
 };

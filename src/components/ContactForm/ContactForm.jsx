@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
-import css from '../ContactForm/ContactForm.module.css';
+
 import { useDispatch } from 'react-redux';
 import { addContacts } from 'redux/contact/operations';
 import { getContacts } from 'redux/contact/selectors';
 import { useSelector } from 'react-redux';
+import { Input, Box, FormLabel, Button } from '@chakra-ui/react';
 
 const ContactForm = () => {
   const contacts = useSelector(getContacts);
@@ -36,7 +36,7 @@ const ContactForm = () => {
       }
     }
 
-    dispatch(addContacts({ id: nanoid(), name, number }));
+    dispatch(addContacts({ name, number }));
     reset();
   };
 
@@ -46,37 +46,47 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={css.form}>
-      <label className={css.label}>
+    <Box as="form" pl={4} onSubmit={handleSubmit}>
+      <FormLabel>
         Name
-        <input
-          className={css.input}
-          name="name"
+        <Input
           type="text"
+          name="name"
+          value={name}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={name}
           onChange={handleChange}
         />
-      </label>
-      <label className={css.label}>
-        phone number
-        <input
-          className={css.input}
-          name="number"
+      </FormLabel>
+      <FormLabel>
+        Number
+        <Input
           type="tel"
+          name="number"
+          value={number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
           onChange={handleChange}
         />
-      </label>
-      <button className={css.btn} type="submit">
-        send
-      </button>
-    </form>
+      </FormLabel>
+      <Button
+        backgroundColor={'green.100'}
+        _hover={{ bg: 'green.200' }}
+        size="md"
+        height="48px"
+        width="200px"
+        border="2px"
+        borderColor="green.50"
+        type="submit"
+      >
+        Add contact
+      </Button>
+      {/* <Button variant="outline" type="submit">
+        Add contact
+      </Button> */}
+    </Box>
   );
 };
 export default ContactForm;

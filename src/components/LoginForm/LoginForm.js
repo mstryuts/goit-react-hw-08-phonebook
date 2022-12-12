@@ -1,6 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-import css from './LoginForm.module.css';
+import {
+  Input,
+  Box,
+  FormLabel,
+  Button,
+  Stack,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
+import { AiOutlineMail } from 'react-icons/ai';
+import { RiLockPasswordFill } from 'react-icons/ri';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,16 +28,43 @@ export const LoginForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
+    <Box as="form" mt={6} pl={4} onSubmit={handleSubmit}>
+      <FormLabel>
         Email
-        <input type="email" name="email" required />
-      </label>
-      <label className={css.label}>
+        <Stack spacing={4}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<AiOutlineMail color="gray.300" />}
+            />
+            <Input type="text" name="email" />
+          </InputGroup>
+        </Stack>
+      </FormLabel>
+      <FormLabel>
         Password
-        <input type="password" name="password" required />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+        <Stack spacing={4}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<RiLockPasswordFill color="gray.300" />}
+            />
+            <Input type="password" name="password" />
+          </InputGroup>
+        </Stack>
+      </FormLabel>
+      <Button
+        backgroundColor={'green.100'}
+        _hover={{ bg: 'green.200' }}
+        size="md"
+        height="48px"
+        width="200px"
+        border="2px"
+        borderColor="green.50"
+        type="submit"
+      >
+        Log In
+      </Button>
+    </Box>
   );
 };
