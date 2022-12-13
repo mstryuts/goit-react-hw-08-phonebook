@@ -83,9 +83,6 @@ const ContactForm = () => {
       >
         Add contact
       </Button>
-      {/* <Button variant="outline" type="submit">
-        Add contact
-      </Button> */}
     </Box>
   );
 };

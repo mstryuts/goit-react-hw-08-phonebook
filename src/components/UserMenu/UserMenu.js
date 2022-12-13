@@ -19,12 +19,5 @@ export const UserMenu = () => {
         Logout
       </Button>
     </Flex>
-    // <div>
-    //   <p>Welcome, {user.name}</p>
-    //   <button type="button" onClick={() => dispatch(logOut())}>
-    //     Logout
-    //   </button>
-    //   <p>123</p>
-    // </div>
   );
 };

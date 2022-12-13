@@ -37,7 +37,7 @@ export const LoginForm = () => {
               pointerEvents="none"
               children={<AiOutlineMail color="gray.300" />}
             />
-            <Input type="text" name="email" />
+            <Input type="text" name="email" required />
           </InputGroup>
         </Stack>
       </FormLabel>
@@ -49,7 +49,7 @@ export const LoginForm = () => {
               pointerEvents="none"
               children={<RiLockPasswordFill color="gray.300" />}
             />
-            <Input type="password" name="password" />
+            <Input type="password" name="password" required />
           </InputGroup>
         </Stack>
       </FormLabel>
