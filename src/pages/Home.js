@@ -15,7 +15,7 @@ const styles = {
 export default function Home() {
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>helo </h1>
+      <h1 style={styles.title}>hello </h1>
     </div>
   );
 }
